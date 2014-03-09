@@ -1,0 +1,23 @@
+{
+  "name": "node-sysinfo",
+  "description": "Useful system information provider for node",
+  "version": "0.1.0",
+  "main": "./sysinfo.js",
+  "maintainers": [
+    {
+      "name": "Gilles De Mey",
+      "email": "gilles@demey.io",
+      "web": "http://gilles.demey.io"
+    }
+  ],
+  "devDependencies": {
+    "mocha": "^1.17.1",
+    "istanbul": "^0.2.4"
+  },
+  "scripts": {
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && rm -rf ./coverage"
+  },
+  "dependencies": {
+    "lodash-node": "^2.4.1"
+  }
+}
