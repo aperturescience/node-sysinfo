@@ -11,23 +11,24 @@ var _         = require('lodash-node'),
  * @return {[sysinfo]} [system information object]
  */
 var sysinfo = function () {
-  this.arch       = os.arch();
-  this.clockSpeed = this.clockSpeed();
-  this.cpu        = this.cpu();
-  this.cpus       = os.cpus();
-  this.cpuLoad    = exports.cpuLoad();
-  this.endianness  = os.endianness();
-  this.EOL        = os.EOL;
-  this.freemem    = os.freemem();
-  this.hostname   = os.hostname();
-  this.loadavg    = os.loadavg();
-  this.numCpus    = this.numCpus();
-  this.platform   = os.platform();
-  this.release    = os.release();
-  this.tmpdir     = os.tmpdir();
-  this.totalmem   = os.totalmem();
-  this.type       = os.type();
-  this.uptime     = os.uptime();
+  this.arch         = os.arch();
+  this.clockSpeed   = this.clockSpeed();
+  this.cpu          = this.cpu();
+  this.cpus         = os.cpus();
+  this.cpuLoad      = exports.cpuLoad();
+  this.endianness   = os.endianness();
+  this.EOL          = os.EOL;
+  this.freemem      = os.freemem();
+  this.memusage     = exports.memoryUsage();
+  this.hostname     = os.hostname();
+  this.loadavg      = os.loadavg();
+  this.numCpus      = this.numCpus();
+  this.platform     = os.platform();
+  this.release      = os.release();
+  this.tmpdir       = os.tmpdir();
+  this.totalmem     = os.totalmem();
+  this.type         = os.type();
+  this.uptime       = os.uptime();
 };
 
 sysinfo.prototype.toString = function () {
