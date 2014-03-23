@@ -1,8 +1,7 @@
 'use strict';
 
-var assert    = require('assert'),
+var should    = require('should'),
     os        = require('os'),
-    _         = require('lodash-node'),
     sysinfo   = require('../sysinfo');
 
 describe('systeminfo', function (done) {
@@ -11,27 +10,16 @@ describe('systeminfo', function (done) {
 
     it('should return basic information', function (done) {
       sysinfo.systemInfo(function (info) {
-        var props = Object.getOwnPropertyNames(info);
-        var a = ['arch',
-                'clockSpeed',
-                'cpu',
-                'cpus',
-                'cpuLoad',
-                'endianness',
-                'EOL',
-                'freemem',
-                'hostname',
-                'loadavg',
-                'numCpus',
-                'platform',
-                'release',
-                'tmpdir',
-                'totalmem',
-                'type',
-                'uptime',
-                'ifaces'
-                ];
-        done(assert.deepEqual(props, a));
+
+        var a = ['arch', 'clockSpeed', 'cpu', 'cpuLoad', 'cpus', 'endianness',
+                'EOL', 'freemem', 'hostname', 'ifaces', 'loadavg', 'memusage',
+                'numCpus', 'platform', 'release', 'tmpdir', 'totalmem', 'type',
+                'uptime'
+              ];
+
+        info.should.have.properties(a);
+        done();
+
       });
 
     });
@@ -48,17 +36,13 @@ describe('systeminfo', function (done) {
 
   describe('#memoryUsage()', function () {
     it('should return the memory usage percentage', function () {
-      var a = sysinfo.memoryUsage();
-      var s = a > 0 && a <= 100;
-      return assert.strictEqual(s, true);
+      return sysinfo.memoryUsage().should.be.within(0, 100);
     });
   });
 
   describe('#cpuLoad()', function () {
     it('should return an array with values for each core', function () {
-      var a = sysinfo.cpuLoad();
-      var correctNumberOfCores = a.length === os.cpus().length;
-      return assert.strictEqual(correctNumberOfCores, true);
+      return sysinfo.cpuLoad().length.should.equal(os.cpus().length);
     });
   });
 
